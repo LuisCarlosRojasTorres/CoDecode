@@ -13,20 +13,26 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     ui->setupUi(this);
-    ui->cB_TypeOfCyphers->addItem("Caesar");
-    ui->cB_TypeOfCyphers->addItem("Vignere");
+    //Type Of Ciphers COMBOBOX
+    ui->cB_TypeOfCiphers->addItem("Caesar");
+    ui->cB_TypeOfCiphers->addItem("Vignere");
 
+
+    //Buttons >> e <<
     connect(ui->pb_encrypt,&QPushButton::clicked,this,&MainWindow::encrypt);
     connect(ui->pb_decrypt,&QPushButton::clicked,this,&MainWindow::decrypt);
 
+    //Cipher Configuration widgets for Caesar and Vignere
     widgetCaesarCypher = new WidgetCaesarCypher(this);
     widgetVignereCypher = new WidgetVignereCypher(this);
+
     ui->stackedWidget->addWidget(widgetCaesarCypher);
     ui->stackedWidget->addWidget(widgetVignereCypher);
 
-//    connect(ui->cB_TypeOfCyphers, QOverload<int>::of(&QComboBox::currentIndexChanged),
-//                ui->stackedWidget, &QStackedWidget::setCurrentIndex);
-    connect(ui->cB_TypeOfCyphers, QOverload<int>::of(&QComboBox::currentIndexChanged),
+    ui->stackedWidget->setCurrentWidget(widgetCaesarCypher);
+
+    //Conecta o comboBox TypeOfCipher com os widgets para os Cipher
+    connect(ui->cB_TypeOfCiphers, QOverload<int>::of(&QComboBox::currentIndexChanged),
                 this, &MainWindow::setCypherConfigurationWidget);
 
 }

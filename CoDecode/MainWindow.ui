@@ -27,7 +27,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="cB_TypeOfCyphers">
+         <widget class="QComboBox" name="cB_TypeOfCiphers">
           <property name="minimumSize">
            <size>
             <width>120</width>
