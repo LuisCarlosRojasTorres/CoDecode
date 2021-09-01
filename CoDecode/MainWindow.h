@@ -11,9 +11,12 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+enum TypeOfCipher {Caesar,Vignere};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
 public slots:
     void encrypt();
     void decrypt();
@@ -32,6 +35,8 @@ private:
 
     QString message,code;
 
-    CipherCaesar *cipher;
+    CipherCaesar *cipherCaesar;
+
+    TypeOfCipher typeOfCipher = TypeOfCipher::Caesar;
 };
 #endif // MAINWINDOW_H

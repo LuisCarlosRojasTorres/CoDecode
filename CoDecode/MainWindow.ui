@@ -70,7 +70,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="txt_Message"/>
+         <widget class="QPlainTextEdit" name="txt_Message">
+          <property name="toolTip">
+           <string>Copy the Message to encrypt</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -78,6 +82,9 @@
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QPushButton" name="pb_encrypt">
+          <property name="toolTip">
+           <string>Encrypt</string>
+          </property>
           <property name="text">
            <string>&gt;&gt;</string>
           </property>
@@ -85,6 +92,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="pb_decrypt">
+          <property name="toolTip">
+           <string>Decrypt</string>
+          </property>
           <property name="text">
            <string>&lt;&lt;</string>
           </property>
@@ -102,7 +112,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="txt_Code"/>
+         <widget class="QPlainTextEdit" name="txt_Code">
+          <property name="toolTip">
+           <string>Copy the encrypted Message to decrypt</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

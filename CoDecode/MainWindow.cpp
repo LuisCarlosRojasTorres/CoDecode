@@ -10,13 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
-
     ui->setupUi(this);
+    setWindowTitle("CoDeco - RedTower2021");
     //Type Of Ciphers COMBOBOX
     ui->cB_TypeOfCiphers->addItem("Caesar");
     ui->cB_TypeOfCiphers->addItem("Vignere");
-
 
     //Buttons >> e <<
     connect(ui->pb_encrypt,&QPushButton::clicked,this,&MainWindow::encrypt);
@@ -31,16 +29,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->stackedWidget->setCurrentWidget(widgetCaesarCypher);
 
-    cipher = new CipherCaesar();
+    cipherCaesar = new CipherCaesar();
     //Conecta o comboBox TypeOfCipher com os widgets para os Cipher
     connect(ui->cB_TypeOfCiphers, QOverload<int>::of(&QComboBox::currentIndexChanged),
                 this, &MainWindow::setCypherConfigurationWidget);
 
     connect(widgetCaesarCypher, &WidgetCaesarCypher::valueChanged,
                 this, &MainWindow::setCaesarCipher);
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -51,14 +46,15 @@ MainWindow::~MainWindow()
 void MainWindow::decrypt()
 {
     code = ui->txt_Code->toPlainText();
-
-    std::cout << code.toStdString() << std::endl;
+    message = cipherCaesar->decrypt(code);
+    ui->txt_Message->setPlainText(message);
 }
 
 void MainWindow::encrypt()
 {
     message = ui->txt_Message->toPlainText();
-    std::cout << message.toStdString() << std::endl;
+    code = cipherCaesar->encrypt(message);
+    ui->txt_Code->setPlainText(code);
 }
 
 
@@ -68,10 +64,12 @@ void MainWindow::setCypherConfigurationWidget(int index)
     case 0: //Caesar
         std::cout<<"Set Caesar Cypher"<<std::endl;
         ui->stackedWidget->setCurrentWidget(widgetCaesarCypher);
+        typeOfCipher = TypeOfCipher::Caesar;
         break;
     case 1: //Vignere
         std::cout<<"Set Vignere Cypher"<<std::endl;
         ui->stackedWidget->setCurrentWidget(widgetVignereCypher);
+        typeOfCipher = TypeOfCipher::Vignere;
         break;
     default:
         break;
@@ -81,6 +79,6 @@ void MainWindow::setCypherConfigurationWidget(int index)
 
 void MainWindow::setCaesarCipher(int shift)
 {
-    cipher->setShift(shift);
+    cipherCaesar->setShift(shift);
     std::cout << "MainWindow::setCaesarCipher" << std::endl;
 }
