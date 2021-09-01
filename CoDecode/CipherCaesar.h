@@ -21,8 +21,11 @@ public:
 private:
     int shift = 0;
 
-    QMap<QChar,int> rosettaCharToInt;
-    QMap<int,QChar> rosettaIntToChar;
+    QMap<QChar,int> lowerRosettaCharToInt;
+    QMap<int,QChar> lowerRosettaIntToChar;
+
+    QMap<QChar,int> upperRosettaCharToInt;
+    QMap<int,QChar> upperRosettaIntToChar;
 };
 
 #endif // CIPHERCAESAR_H
