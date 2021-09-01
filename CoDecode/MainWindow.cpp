@@ -79,6 +79,24 @@ void MainWindow::setCypherConfigurationWidget(int index)
 
 void MainWindow::setCaesarCipher(int shift)
 {
+/*
+    When the shift is changed CODECO will encrypt or decrypt based on
+    which plainTextEdit is empty. In case that both plainTextEdit are not empty
+    the program will encrypt by default.
+*/
     cipherCaesar->setShift(shift);
     std::cout << "MainWindow::setCaesarCipher" << std::endl;
+
+    bool codeIsEmpty = ui->txt_Code->toPlainText().isEmpty();
+    bool messageIsEmpty = ui->txt_Message->toPlainText().isEmpty();
+
+    if( (!codeIsEmpty && !messageIsEmpty)){
+        encrypt();
+    }
+    else if(codeIsEmpty){
+        encrypt();
+    }
+    else if(messageIsEmpty){
+        decrypt();
+    }
 }
