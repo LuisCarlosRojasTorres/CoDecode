@@ -34,7 +34,20 @@
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="cB_key"/>
+    <widget class="QComboBox" name="cB_key">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>16777215</height>
+      </size>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

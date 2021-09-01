@@ -46,14 +46,36 @@ MainWindow::~MainWindow()
 void MainWindow::decrypt()
 {
     code = ui->txt_Code->toPlainText();
-    message = cipherCaesar->decrypt(code);
+    message = "Error in MainWindow::decrypt()";
+
+    switch(typeOfCipher){
+    case TypeOfCipher::Caesar :
+        message = cipherCaesar->decrypt(code);
+        break;
+    case TypeOfCipher::Vignere :
+        break;
+    default:
+        break;
+    }
+
     ui->txt_Message->setPlainText(message);
 }
 
 void MainWindow::encrypt()
 {
     message = ui->txt_Message->toPlainText();
-    code = cipherCaesar->encrypt(message);
+    code = "Error in MainWindow::encrypt()";
+
+    switch(typeOfCipher){
+    case TypeOfCipher::Caesar :
+        code = cipherCaesar->encrypt(message);
+        break;
+    case TypeOfCipher::Vignere :
+        break;
+    default:
+        break;
+    }
+
     ui->txt_Code->setPlainText(code);
 }
 

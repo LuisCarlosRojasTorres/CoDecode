@@ -26,12 +26,10 @@ QString CipherCaesar::encrypt(QString message)
         if(c.isLower()){
             if(lowerRosettaCharToInt.contains(c)){
                 ans.append( lowerRosettaIntToChar.value( ( lowerRosettaCharToInt.value(c) + shift ) % 26) );
-                std::cout << ( lowerRosettaCharToInt.value(c) + shift ) % 26 << "  " << std::endl;
             }
         }else if(c.isUpper()){
             if(upperRosettaCharToInt.contains(c)){
                 ans.append( upperRosettaIntToChar.value( ( upperRosettaCharToInt.value(c) + shift ) % 26) );
-                std::cout << ( upperRosettaCharToInt.value(c) + shift ) % 26 << "  " << std::endl;
             }
         }
         else{
@@ -196,6 +194,5 @@ void CipherCaesar::setRosettaIntToChar()
 
 void CipherCaesar::setShift(int shift)
 {
-    std::cout << "CipherCaesar::setShift : " << shift << std::endl;
     this->shift = shift;
 }
