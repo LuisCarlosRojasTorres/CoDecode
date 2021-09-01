@@ -15,10 +15,17 @@ public:
     explicit WidgetCaesarCypher(QWidget *parent = nullptr);
     ~WidgetCaesarCypher();
 
+    int getCurrentIndex();
 
+public slots:
+    void setCurrentIndex(int currentIndex);
+
+signals:
+    void valueChanged(int currentIndex);
 
 private:
     Ui::WidgetCaesarCypher *ui;
+    int currentIndex;
 
 };
 

@@ -1,6 +1,8 @@
 #include "WidgetCaesarCypher.h"
 #include "ui_WidgetCaesarCypher.h"
 
+#include <iostream>
+
 
 WidgetCaesarCypher::WidgetCaesarCypher(QWidget *parent) :
     QWidget(parent),
@@ -13,10 +15,22 @@ WidgetCaesarCypher::WidgetCaesarCypher(QWidget *parent) :
 
     ui->cB_key->addItems(keys);
 
+    connect(ui->cB_key, QOverload<int>::of(&QComboBox::currentIndexChanged),
+                this, &WidgetCaesarCypher::setCurrentIndex);
+
 }
 
 WidgetCaesarCypher::~WidgetCaesarCypher()
 {
     delete ui;
+}
+
+void WidgetCaesarCypher::setCurrentIndex(int currentIndex)
+{
+    if(currentIndex != this->currentIndex){
+        this->currentIndex = currentIndex;
+        emit valueChanged(currentIndex);
+        std::cout << " - WidgetCaesarCypher::setCurrentIndex as: " << currentIndex << std::endl;
+    }
 }
 

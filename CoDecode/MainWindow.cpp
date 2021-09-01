@@ -1,8 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include "CipherCaesar.h"
-
 #include "WidgetCaesarCypher.h"
 #include "WidgetVignereCypher.h"
 
@@ -33,11 +31,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->stackedWidget->setCurrentWidget(widgetCaesarCypher);
 
+    cipher = new CipherCaesar();
     //Conecta o comboBox TypeOfCipher com os widgets para os Cipher
     connect(ui->cB_TypeOfCiphers, QOverload<int>::of(&QComboBox::currentIndexChanged),
                 this, &MainWindow::setCypherConfigurationWidget);
 
-    CipherCaesar cipher(1);
+    connect(widgetCaesarCypher, &WidgetCaesarCypher::valueChanged,
+                this, &MainWindow::setCaesarCipher);
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -74,4 +77,10 @@ void MainWindow::setCypherConfigurationWidget(int index)
         break;
     }
 
+}
+
+void MainWindow::setCaesarCipher(int shift)
+{
+    cipher->setShift(shift);
+    std::cout << "MainWindow::setCaesarCipher" << std::endl;
 }

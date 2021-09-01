@@ -3,19 +3,61 @@
 #include <iostream>
 #include <QDebug>
 
+CipherCaesar::CipherCaesar()
+{
+    this->shift = 0;
+    setRosettaCharToInt();
+    setRosettaIntToChar();
+}
+
 CipherCaesar::CipherCaesar(int shift)
     :
       shift(shift)
 {
     setRosettaCharToInt();
     setRosettaIntToChar();
+}
 
-    QString test = "Hola Rufo!!";
-    std::cout << "Message: " << test.toStdString() << std::endl;
-    std::cout << "Code: " << encrypt(test).toStdString() << std::endl;
-    std::cout << "DeCode: " << decrypt(encrypt(test)).toStdString() << std::endl;
-    std::cout << "OK" << std::endl;
+QString CipherCaesar::encrypt(QString message)
+{
+    QString ans;
 
+    for(QChar c : message){
+        if(c.isLower()){
+            if(lowerRosettaCharToInt.contains(c)){
+                ans.append( lowerRosettaIntToChar.value( ( lowerRosettaCharToInt.value(c) + shift ) % 26) );
+            }
+        }else if(c.isUpper()){
+            if(upperRosettaCharToInt.contains(c)){
+                ans.append( upperRosettaIntToChar.value( ( upperRosettaCharToInt.value(c) + shift ) % 26) );
+            }
+        }
+        else{
+            ans.append(c);
+        }
+    }
+    return ans;
+}
+
+QString CipherCaesar::decrypt(QString code)
+{
+    QString ans;
+
+    for(QChar c : code){
+        if(c.isLower()){
+            if(lowerRosettaCharToInt.contains(c)){
+                ans.append( lowerRosettaIntToChar.value( ( lowerRosettaCharToInt.value(c) - shift ) % 26) );
+            }
+        }else if(c.isUpper()){
+            if(upperRosettaCharToInt.contains(c)){
+                ans.append( upperRosettaIntToChar.value( ( upperRosettaCharToInt.value(c) - shift ) % 26) );
+            }
+        }
+        else{
+            ans.append(c);
+        }
+    }
+    return ans;
 }
 
 void CipherCaesar::setRosettaCharToInt()
@@ -150,44 +192,8 @@ void CipherCaesar::setRosettaIntToChar()
     upperRosettaIntToChar[25]='Z';
 }
 
-QString CipherCaesar::encrypt(QString message)
+void CipherCaesar::setShift(int shift)
 {
-    QString ans;
-
-    for(QChar c : message){
-        if(c.isLower()){
-            if(lowerRosettaCharToInt.contains(c)){
-                ans.append( lowerRosettaIntToChar.value( ( lowerRosettaCharToInt.value(c) + shift ) % 26) );
-            }
-        }else if(c.isUpper()){
-            if(upperRosettaCharToInt.contains(c)){
-                ans.append( upperRosettaIntToChar.value( ( upperRosettaCharToInt.value(c) + shift ) % 26) );
-            }
-        }
-        else{
-            ans.append(c);
-        }
-    }
-    return ans;
-}
-
-QString CipherCaesar::decrypt(QString code)
-{
-    QString ans;
-
-    for(QChar c : code){
-        if(c.isLower()){
-            if(lowerRosettaCharToInt.contains(c)){
-                ans.append( lowerRosettaIntToChar.value( ( lowerRosettaCharToInt.value(c) - shift ) % 26) );
-            }
-        }else if(c.isUpper()){
-            if(upperRosettaCharToInt.contains(c)){
-                ans.append( upperRosettaIntToChar.value( ( upperRosettaCharToInt.value(c) - shift ) % 26) );
-            }
-        }
-        else{
-            ans.append(c);
-        }
-    }
-    return ans;
+    std::cout << "CipherCaesar::setShift : " << shift << std::endl;
+    this->shift = shift;
 }

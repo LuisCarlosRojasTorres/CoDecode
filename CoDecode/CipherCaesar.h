@@ -5,10 +5,11 @@
 #include <string>
 #include <QString>
 
-
 class CipherCaesar
 {
+
 public:
+    CipherCaesar();
     CipherCaesar(int shift);
 
     void setRosettaCharToInt();
@@ -17,6 +18,7 @@ public:
     QString encrypt(QString message);
     QString decrypt(QString code);
 
+    void setShift(int shift);
 
 private:
     int shift = 0;
