@@ -1,6 +1,7 @@
 #include "WidgetCaesarCypher.h"
 #include "ui_WidgetCaesarCypher.h"
 
+
 WidgetCaesarCypher::WidgetCaesarCypher(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WidgetCaesarCypher)
@@ -18,3 +19,4 @@ WidgetCaesarCypher::~WidgetCaesarCypher()
 {
     delete ui;
 }
+

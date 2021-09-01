@@ -15,8 +15,11 @@ public:
     explicit WidgetCaesarCypher(QWidget *parent = nullptr);
     ~WidgetCaesarCypher();
 
+
+
 private:
     Ui::WidgetCaesarCypher *ui;
+
 };
 
 #endif // WIDGETCAESARCYPHER_H

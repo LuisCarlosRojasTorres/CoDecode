@@ -1,6 +1,8 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+#include "CipherCaesar.h"
+
 #include "WidgetCaesarCypher.h"
 #include "WidgetVignereCypher.h"
 
@@ -35,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->cB_TypeOfCiphers, QOverload<int>::of(&QComboBox::currentIndexChanged),
                 this, &MainWindow::setCypherConfigurationWidget);
 
+    CipherCaesar cipher(1);
 }
 
 MainWindow::~MainWindow()
